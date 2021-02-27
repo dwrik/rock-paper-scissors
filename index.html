@@ -8,11 +8,13 @@
         <h3>Welcome to Rock Paper Scissors !!</h3>
     </body>
     <script>
-
+        
+        // declare constants
         const ROCK = 'rock';
         const PAPER = 'paper';
         const SCISSORS = 'scissors';
 
+        // simulate computer's play
         function computerPlay() {
 
             let choices = [ROCK, PAPER, SCISSORS];
@@ -21,34 +23,77 @@
             return choices[random];
         }
 
+        // simulate a single round
         function playRound(playerSelection, computerSelection) {
 
+            // tie
             if (playerSelection == computerSelection) {
-                return 'It\'s a tie!';
+                return null;
             }
 
-            let result;
-            
+            // win/lose
             if ((playerSelection == ROCK && computerSelection == SCISSORS)
             || (playerSelection == PAPER && computerSelection == ROCK)
             || (playerSelection == SCISSORS && computerSelection == PAPER)) {
-                result = `You Won! ${capitalize(playerSelection)} beats ${capitalize(computerSelection)}`
+                return true;
             } else {
-                result = `You Lose! ${capitalize(computerSelection)} beats ${capitalize(playerSelection)}`
+                return false;
             }
-
-            return result;
         }
 
+        // simulate a 5 round game
+        function game() {
+
+            // score
+            let playerWins = 0;
+            let computerWins = 0;
+
+            for (let i=0; i<5; i++) {
+
+                // get plays
+                let computerSelection = computerPlay();
+                let playerSelection = prompt('Enter your choice (Rock, Paper, Scissors)?').toLowerCase();
+
+                // play round
+                let playerWon = playRound(playerSelection, computerSelection);
+
+                console.log('computer: ' + computerSelection + '\tplayer: ' + playerSelection);
+
+                // check for tie
+                if (playerWon == null) {
+                    console.log('It\'s a tie!');
+                    continue;
+                }
+
+                // check for winner
+                if (playerWon) {
+                    console.log(`You Won! ${capitalize(playerSelection)} beats ${capitalize(computerSelection)}`);
+                    playerWins++;
+                } else {
+                    console.log(`You Lose! ${capitalize(computerSelection)} beats ${capitalize(playerSelection)}`);
+                    computerWins++;
+                }
+            }
+
+            let result;
+
+            if (playerWins > computerWins) {
+                result = 'Congratulations! You won the game';
+            } else if (computerWins > playerWins) {
+                result =  'Sorry! You lost the game';
+            } else {
+                result = 'It\'s a tie!';
+            }
+
+            console.log(result);
+        }
+
+        // helper
         function capitalize(string) {
             return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
         }
 
-        let computerSelection = computerPlay();
-        let playerSelection = prompt('Enter your choice (Rock, Paper, Scissors)?').toLowerCase();
-        console.log('computer: ' + computerSelection);
-        console.log('player: ' + playerSelection);
-        console.log(playRound(playerSelection, computerSelection));
+        game();
 
     </script>
 </html>
