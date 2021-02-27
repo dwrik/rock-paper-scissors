@@ -8,6 +8,14 @@
         <h3>Welcome to Rock Paper Scissors !!</h3>
     </body>
     <script>
-        console.log("Hello there!");
+
+        function computerPlay() {
+            let choices = ['rock', 'paper', 'scissors'];
+            let random = Math.floor(Math.random() * 3);
+            return choices[random];
+        }
+
+        console.log(computerPlay());
+
     </script>
 </html>
