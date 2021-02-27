@@ -9,13 +9,46 @@
     </body>
     <script>
 
+        const ROCK = 'rock';
+        const PAPER = 'paper';
+        const SCISSORS = 'scissors';
+
         function computerPlay() {
-            let choices = ['rock', 'paper', 'scissors'];
+
+            let choices = [ROCK, PAPER, SCISSORS];
             let random = Math.floor(Math.random() * 3);
+
             return choices[random];
         }
 
-        console.log(computerPlay());
+        function playRound(playerSelection, computerSelection) {
+
+            if (playerSelection == computerSelection) {
+                return 'It\'s a tie!';
+            }
+
+            let result;
+            
+            if ((playerSelection == ROCK && computerSelection == SCISSORS)
+            || (playerSelection == PAPER && computerSelection == ROCK)
+            || (playerSelection == SCISSORS && computerSelection == PAPER)) {
+                result = `You Won! ${capitalize(playerSelection)} beats ${capitalize(computerSelection)}`
+            } else {
+                result = `You Lose! ${capitalize(computerSelection)} beats ${capitalize(playerSelection)}`
+            }
+
+            return result;
+        }
+
+        function capitalize(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+        }
+
+        let computerSelection = computerPlay();
+        let playerSelection = prompt('Enter your choice (Rock, Paper, Scissors)?').toLowerCase();
+        console.log('computer: ' + computerSelection);
+        console.log('player: ' + playerSelection);
+        console.log(playRound(playerSelection, computerSelection));
 
     </script>
 </html>
