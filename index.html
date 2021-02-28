@@ -10,23 +10,17 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body id="container">
-        <div class="header">
+        <div id="header">
             <h1 id="main-heading">
                 Rock, Paper, Scissors
             </h1>
-            <!--
-            <p>
-                Welcome to the classic game of Rock Paper Scissors!!
-                You probably know this but let's just go over the rules of the game
-            </p>
-            -->
         </div>
-        <div class="scoreboard">
+        <div id="scoreboard">
             <div class="scorecard">
                 <h3 class="player-name">
                     Player
                 </h3> 
-                <h4 class="player-score">
+                <h4 class="player-score" id="user-points">
                     0
                 </h4>
             </div>
@@ -34,30 +28,32 @@
                 <h3 class="player-name">
                     AI
                 </h3> 
-                <h4 class="player-score">
+                <h4 class="player-score" id="ai-points">
                     0
                 </h4>
             </div>
         </div>
-        <div class="gameboard">
-            <div class="round-info">
-                <div class="round-number">
+        <div id="gameboard">
+            <div id="round-info">
+                <div id="round-number">
                     Round #1
                 </div>
-                <div class="result">
-                </div>
-                <div class="result-description">
+                <div id="result">
+                    First to 5 wins!
                 </div>
             </div>
-            <div class="buttons">
+            <div id="buttons">
                 <button class="game-buttons" id="rock">ROCK</button>
                 <button class="game-buttons" id="paper">PAPER</button>
                 <button class="game-buttons" id="scissors">SCISSORS</button>
             </div>
         </div>
-        <div class="console-container">
-            <div class="console">
+        <div id="console-container">
+            <div id="console-wrapper">
+                <div id="console">
+                </div>
             </div>
         </div>
+        <script src="scripts/script.js"></script>
     </body>
 </html>
