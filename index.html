@@ -2,98 +2,62 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Rock Paper Scissors!</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Rock Paper Scissors!
+        </title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
-    <body>
-        <h3>Welcome to Rock Paper Scissors !!</h3>
+    <body id="container">
+        <div class="header">
+            <h1 id="main-heading">
+                Rock, Paper, Scissors
+            </h1>
+            <!--
+            <p>
+                Welcome to the classic game of Rock Paper Scissors!!
+                You probably know this but let's just go over the rules of the game
+            </p>
+            -->
+        </div>
+        <div class="scoreboard">
+            <div class="scorecard">
+                <h3 class="player-name">
+                    Player
+                </h3> 
+                <h4 class="player-score">
+                    0
+                </h4>
+            </div>
+            <div class="scorecard">
+                <h3 class="player-name">
+                    AI
+                </h3> 
+                <h4 class="player-score">
+                    0
+                </h4>
+            </div>
+        </div>
+        <div class="gameboard">
+            <div class="round-info">
+                <div class="round-number">
+                    Round #1
+                </div>
+                <div class="result">
+                </div>
+                <div class="result-description">
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="game-buttons" id="rock">ROCK</button>
+                <button class="game-buttons" id="paper">PAPER</button>
+                <button class="game-buttons" id="scissors">SCISSORS</button>
+            </div>
+        </div>
+        <div class="console-container">
+            <div class="console">
+            </div>
+        </div>
     </body>
-    <script>
-        
-        // declare constants
-        const ROCK = 'rock';
-        const PAPER = 'paper';
-        const SCISSORS = 'scissors';
-
-        // simulate computer's play
-        function computerPlay() {
-
-            let choices = [ROCK, PAPER, SCISSORS];
-            let random = Math.floor(Math.random() * 3);
-
-            return choices[random];
-        }
-
-        // simulate a single round
-        function playRound(playerSelection, computerSelection) {
-
-            // tie
-            if (playerSelection == computerSelection) {
-                return null;
-            }
-
-            // win/lose
-            if ((playerSelection == ROCK && computerSelection == SCISSORS)
-            || (playerSelection == PAPER && computerSelection == ROCK)
-            || (playerSelection == SCISSORS && computerSelection == PAPER)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        // simulate a 5 round game
-        function game() {
-
-            // score
-            let playerWins = 0;
-            let computerWins = 0;
-
-            for (let i=0; i<5; i++) {
-
-                // get plays
-                let computerSelection = computerPlay();
-                let playerSelection = prompt('Enter your choice (Rock, Paper, Scissors)?').toLowerCase();
-
-                // play round
-                let playerWon = playRound(playerSelection, computerSelection);
-
-                console.log('computer: ' + computerSelection + '\tplayer: ' + playerSelection);
-
-                // check for tie
-                if (playerWon == null) {
-                    console.log('It\'s a tie!');
-                    continue;
-                }
-
-                // check for winner
-                if (playerWon) {
-                    console.log(`You Won! ${capitalize(playerSelection)} beats ${capitalize(computerSelection)}`);
-                    playerWins++;
-                } else {
-                    console.log(`You Lose! ${capitalize(computerSelection)} beats ${capitalize(playerSelection)}`);
-                    computerWins++;
-                }
-            }
-
-            let result;
-
-            if (playerWins > computerWins) {
-                result = 'Congratulations! You won the game';
-            } else if (computerWins > playerWins) {
-                result =  'Sorry! You lost the game';
-            } else {
-                result = 'It\'s a tie!';
-            }
-
-            console.log(result);
-        }
-
-        // helper
-        function capitalize(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-        }
-
-        game();
-
-    </script>
 </html>
