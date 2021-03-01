@@ -35,13 +35,15 @@ function checkForWinner() {
     }
     if (gameOver) {
         buttons.forEach(button => button.removeEventListener('click', playGame));
+        buttons.forEach(button => button.classList.toggle('hover-effect'));
+        const roundNumber = document.querySelector('#round-number');
         const roundInfo = document.querySelector('#round-info');
+        const instruction = document.querySelector('#instruction');
+        instruction.innerHTML = 'Game Over! Refresh the page to play again.';
+        roundInfo.removeChild(roundNumber);
         const heading = document.createElement('h3');
         heading.innerHTML = gameOverMessage;
-        heading.style.cssText = 'font-size:1.5em; font-weight: medium;'
-        roundInfo.removeChild(document.querySelector('#round-number'));
-        roundInfo.removeChild(document.querySelector('#result'));
-        roundInfo.appendChild(heading);
+        roundInfo.insertBefore(heading, instruction);
     }
 }
 
@@ -52,19 +54,17 @@ function updateScoreboard(playerWon, playerSelection, computerSelection) {
     if (playerWon == null) {
         roundResult = 'Hmm... It\'s a tie!';
     } else if (playerWon) {
-        roundResult = `Yay you won! Your ${capitalize(playerSelection)} beats AI's ${capitalize(computerSelection)}`;
+        roundResult = `Yay you won! Your ${capitalize(playerSelection)} beat AI's ${capitalize(computerSelection)}`;
         const playerScore = document.querySelector('#user-points');
         playerScore.innerHTML = ++playerWins;
     } else {
-        roundResult = `Oops you lost! AI's ${capitalize(computerSelection)} beats your ${capitalize(playerSelection)}`;
+        roundResult = `Oops you lost! AI's ${capitalize(computerSelection)} beat your ${capitalize(playerSelection)}`;
         const aiScore = document.querySelector('#ai-points');
         aiScore.innerHTML = ++aiWins;
     }
     const console = document.querySelector('#console');
     const firstChild = console.firstElementChild;
-    const result = document.querySelector('#result');
     const para = document.createElement('p');
-    result.innerHTML = roundResult;
     para.innerHTML = `Round #${currentRound}: ${roundResult}`;
     console.insertBefore(para, firstChild);
     updateRoundNumber();
